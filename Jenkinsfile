@@ -1,13 +1,25 @@
 pipeline {
     agent any
-        tools {
-            maven 'mymaven'
-            jdk 'java'
-            }
+    tools {
+        maven 'mymaven'
+        jdk 'java'
+    }
     stages {
-        stage ('compile') {
+        stage ('Compile') {
             steps {
                 sh 'mvn compile'
+            }
+        }
+
+        stage ('CodeReview') {
+            steps {
+                sh 'mvn -Pmetrics pmd:pmd' 
+            }
+            post {
+                success {
+					pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'target/pmd.xml', unHealthy: ''
+                    
+                }
             }
         }
     }
