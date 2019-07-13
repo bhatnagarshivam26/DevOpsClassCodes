@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-		stage ('QAMetricCheck') {
+		stage ('Package') {
             steps {
                 sh 'mvn package' 
             }
