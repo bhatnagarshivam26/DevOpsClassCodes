@@ -22,5 +22,16 @@ pipeline {
                 }
             }
         }
+		stage ('CodeReview') {
+            steps {
+                sh 'mvn test' 
+            }
+            post {
+                success {
+					junit 'target/surefire-reports/*.xml'
+                    
+                }
+            }
+        }
     }
 }
