@@ -22,7 +22,7 @@ pipeline {
                 }
             }
         }
-		stage ('CodeReview') {
+		stage ('QAUnitTest') {
             steps {
                 sh 'mvn test' 
             }
