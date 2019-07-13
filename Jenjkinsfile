@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+        tools {
+            maven 'mymaven'
+            jdk 'java'
+            }
+    stages {
+        stage ('Compile') {
+            steps {
+                sh 'mvn Compile'
+            }
+        }
+    }
+}
